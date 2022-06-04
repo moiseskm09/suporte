@@ -8,7 +8,8 @@ header("refresh: 90;biloja_2.php");
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-        <title>suporte</title>
+        <title>BI LOJA - TOTAL DEPARTAMENTO</title>
+        <link rel="shortcut icon" href="assets/img/a_arius.png">
         <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alata&amp;display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&amp;display=swap">
