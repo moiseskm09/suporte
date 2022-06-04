@@ -1,6 +1,6 @@
 <?php 
-require_once 'ferramentas/sql_bierp_uc.php';
-header("refresh: 90;biloja_1.php");
+require_once 'ferramentas/sql_biloja_uc.php';
+header("refresh: 90;bierp_1.php");
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@ header("refresh: 90;biloja_1.php");
             <div class="col-md-12">
                 <div class="card cards-supeiror">
                     <div class="card-body p-2">
-                        <h4 class="text-center d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-center card-title titulos"><img src="assets/img/a_arius.png" width="40" height="40">&nbsp;BI ARIUS ERP</h4>
+                        <h4 class="text-center d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-center card-title titulos"><img src="assets/img/a_arius.png" width="40" height="40">&nbsp;BI ARIUS LOJA</h4>
                         <h6 class="text-muted card-subtitle mb-2"></h6>
                     </div>
                 </div>
@@ -77,42 +77,7 @@ header("refresh: 90;biloja_1.php");
                                     <?php 
                                     }
                                     ?>
-                                    <div class="col-12">
-                                        <h1 class="text-center titulos"><i class="fas fa-user-tie cor-secundaria"></i>&nbsp;INFRA</h1>
-                                    </div>
-                                    <?php 
-                                    while($resultadoInfra = mysqli_fetch_assoc($consultaInfra)){
-                                    ?>
-                                    <div class="col-12 col-md-6 col-lg-6">
-                                        <div class="card d-xxl-flex">
-                                            <div class="card-body card-body-analistas">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-4 col-lg-4">
-                                                        <div class="profile-image"><img src="assets/img/avatar/<?php echo $resultadoInfra["avatar"];?>"></div>
-                                                    </div>
-                                                    <div class="col-12 col-md-8 col-lg-8">
-                                                        <div>
-                                                            <h6 class="titulos-analistas"><?php echo $resultadoInfra["usuario"];?></h6>
-                                                            <div class="row">
-                                                                <div class="col-4"><i class="fas fa-ticket-alt icones-analistas"></i>
-                                                                    <h6 class="titulos-valores"><?php echo $resultadoInfra["tt"];?></h6>
-                                                                </div>
-                                                                <div class="col-4"><i class="far fa-comments icones-analistas"></i>
-                                                                    <h6 class="titulos-valores"><?php echo $resultadoInfra["tto"];?></h6>
-                                                                </div>
-                                                                <div class="col-4"><i class="fas fa-chart-line icones-analistas"></i>
-                                                                    <h6 class="titulos-valores"><?php echo $resultadoInfra["ttg"];?></h6>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <?php 
-                                    }
-                                    ?>
+                                   
                                 </div>
                             </div>
                         </div>

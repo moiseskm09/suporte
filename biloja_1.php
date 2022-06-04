@@ -1,6 +1,6 @@
 <?php
-require_once './ferramentas/sql_bierp.php';
-header("refresh: 90;bierp_2.php");
+require_once './ferramentas/sql_biloja.php';
+header("refresh: 90;biloja_2.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -33,7 +33,7 @@ header("refresh: 90;bierp_2.php");
                 <div class="col-md-12">
                     <div class="card cards-supeiror">
                         <div class="card-body p-2">
-                            <h4 class="text-center d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-center card-title titulos"><img src="assets/img/a_arius.png" width="40" height="40">&nbsp;BI ARIUS ERP</h4>
+                            <h4 class="text-center d-lg-flex justify-content-lg-center align-items-lg-center justify-content-xl-center card-title titulos"><img src="assets/img/a_arius.png" width="40" height="40">&nbsp;BI ARIUS LOJA</h4>
                             <h6 class="text-muted card-subtitle mb-2"></h6>
                         </div>
                     </div>
@@ -86,7 +86,7 @@ header("refresh: 90;bierp_2.php");
                     <div class="card cards-supeiror">
                         <div class="card-body">
                             <h4 class="d-flex d-lg-flex align-items-center align-items-lg-center card-title titulos"><i class="fas fa-building icones"></i>&nbsp;<?php echo $totalFabrica["totalFabrica"]; ?></h4>
-                            <h6 class="text-muted card-subtitle mb-2 subtitulo">Pendente Arius</h6>
+                            <h6 class="text-muted card-subtitle mb-2 subtitulo">Pendente KW</h6>
                         </div>
                     </div>
                 </div>

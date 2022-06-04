@@ -8,7 +8,7 @@ $totalTicket = mysqli_fetch_assoc($cTotal);
 $cTotalFechado = mysqli_query($conexao, "SELECT count(codticket) AS totalFechado from brazip_bi.ticket WHERE dtabertura >= '$DATAINICIAL' and codstatus in (3,13) and coddepartamento = $DEPARTAMENTOERP");
 $totalFechado = mysqli_fetch_assoc($cTotalFechado);
 
-$cFabrica = mysqli_query($conexao, "SELECT count(codticket) AS totalFabrica from brazip_bi.ticket WHERE dtabertura >= '$DATAINICIAL' and codstatus in (7,12) and coddepartamento = $DEPARTAMENTOERP");
+$cFabrica = mysqli_query($conexao, "SELECT count(codticket) AS totalFabrica from brazip_bi.ticket WHERE dtabertura >= '$DATAINICIAL' and codstatus = 11 and coddepartamento = $DEPARTAMENTOERP");
 $totalFabrica = mysqli_fetch_assoc($cFabrica);
 
 $cInterno = mysqli_query($conexao, "SELECT count(codticket) AS totalInterno from brazip_bi.ticket WHERE dtabertura >= '$DATAINICIAL' and codstatus in (4, 5, 14) and coddepartamento = $DEPARTAMENTOERP");
@@ -145,3 +145,113 @@ $tfechados30Dia = mysqli_fetch_assoc($cfechado30Dia);
 
 $cfechado90Dia = mysqli_query($conexao, "SELECT count(codticket) AS fechados90Dia FROM brazip_bi.ticket WHERE dtfechamento >= DATE_SUB(CURDATE(),INTERVAL 90 DAY) and coddepartamento = $DEPARTAMENTOERP");
 $tfechados90Dia = mysqli_fetch_assoc($cfechado90Dia);
+
+
+//avaliacao
+
+$buscaTotais = mysqli_query($conexao, "SELECT
+    tipo,
+    SUM(qb.tticket) + SUM(qb.tonline) AS totalg
+FROM
+    (
+    SELECT
+        1 AS tipo,
+        COUNT(tck.codticket) AS tticket,
+        0 AS tonline
+    FROM
+        $DATABASE.usuarios u
+    INNER JOIN $DATABASE.ticket tck ON
+        u.id = tck.codusuario
+    WHERE
+        u.departamento = $DEPARTAMENTOERP AND tck.codstatus IN(3, 13) AND tck.dtabertura >= '$DATAINICIAL'
+    UNION
+SELECT
+    2 AS tipo,
+    0 AS tticket,
+    COUNT(ao.idatendimento) AS tonline
+FROM
+    $DATABASE.usuarios u
+INNER JOIN $DATABASE.atendimentoonline ao ON
+    u.id = ao.codusuario
+WHERE
+    u.departamento = $DEPARTAMENTOERP AND ao.datasolicitacao >= '$DATAINICIAL'
+) AS qb
+GROUP BY
+    tipo");
+
+while($totalAtendimento = mysqli_fetch_assoc($buscaTotais)){
+    if($totalAtendimento["tipo"] == 1){
+        $totalTicketAnoAval = $totalAtendimento["totalg"];
+    }else{
+        $totalOnlineAnoAval = $totalAtendimento["totalg"];
+    }
+}
+
+
+
+
+$buscaAvaliacao = mysqli_query($conexao, "SELECT
+    qb.codavaliacao AS codaval,
+    SUM(qb.totalao) + SUM(qb.totaltck) AS totalg
+FROM
+    (
+    SELECT
+        COUNT(codavaliacao) AS totalao,
+        0 AS totaltck,
+        codavaliacao
+    FROM
+        $DATABASE.usuarios u
+    INNER JOIN $DATABASE.atendimentoonline ao ON
+        u.id = ao.codusuario
+    WHERE
+        u.departamento = $DEPARTAMENTOERP AND datasolicitacao >= '$DATAINICIAL'
+    GROUP BY
+        codavaliacao
+    UNION
+SELECT
+    0 AS totalao,
+    COUNT(avaliacao) AS totaltck,
+    CASE WHEN avaliacao IN(5, 4) THEN '1' WHEN avaliacao IN(3) THEN '2' WHEN avaliacao IN(2, 1) THEN '3' WHEN avaliacao = 0 THEN '0'
+END AS codavaliacao
+FROM
+    $DATABASE.usuarios u
+INNER JOIN $DATABASE.ticket tck ON
+    u.id = tck.codusuario
+WHERE
+    u.departamento = $DEPARTAMENTOERP AND dtabertura >= '$DATAINICIAL' and codstatus in (3, 13)
+GROUP BY
+    codavaliacao
+) AS qb
+GROUP BY
+    codaval");
+
+$na = 0; $otimo = 0; $satisfatorio = 0; $ruim = 0; $pessimo = 0;
+while($resultadoAvaliacao = mysqli_fetch_assoc($buscaAvaliacao)){
+    $ttAvaliacao = $resultadoAvaliacao["codaval"];
+    if($ttAvaliacao == 0){
+        $na = $resultadoAvaliacao["totalg"];
+       //echo $na;
+    }elseif($ttAvaliacao == 1){
+        $otimo = $resultadoAvaliacao["totalg"];
+       //echo $otimo;
+    }
+    elseif($ttAvaliacao == 2){
+        $satisfatorio = $resultadoAvaliacao["totalg"];
+       //echo $satisfatorio;
+    }elseif($ttAvaliacao == 3){
+        $ruim = $resultadoAvaliacao["totalg"];
+       //echo $ruim;
+    }elseif($ttAvaliacao == 4){
+        $pessimo = $resultadoAvaliacao["totalg"];
+       //echo $pessimo;
+    }
+}
+
+$totalTicketMaisOnline = $totalTicketAnoAval + $totalOnlineAnoAval;
+$totalRuim = $ruim + $pessimo;
+
+$percentualOtimo = $otimo / $totalTicketMaisOnline * 100;
+$percentualSatisfatorio = $satisfatorio / $totalTicketMaisOnline * 100;
+$percentualRuim = $totalRuim / $totalTicketMaisOnline * 100;
+$percentualna = $na / $totalTicketMaisOnline * 100;
+
