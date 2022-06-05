@@ -107,3 +107,36 @@
 .anychart-credits-logo , .anychart-credits-text{
     visibility: hidden;
 }
+
+.card-backup{
+    height: 253px;
+}
+
+.backup-valores{
+    color: #f1be48;
+    font-size: 130px;
+}
+
+.relacao li {
+    list-style-type: none;
+}
+
+.card-erros{
+    max-height: 100%; 
+    overflow-y: auto;
+}
+
+.card-erros::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
+}
+
+.card-erros::-webkit-scrollbar-track {
+  background: #1d4289;        /* color of the tracking area */
+  border-radius: 15px;
+}
+
+.card-erros::-webkit-scrollbar-thumb {
+  background-color: #f1be48;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid orange;  /* creates padding around scroll thumb */
+}
