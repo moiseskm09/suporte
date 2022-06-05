@@ -1,6 +1,6 @@
 <?php 
 require_once 'ferramentas/sql_biloja_uc.php';
-header("refresh: 90;bierp_1.php");
+header("refresh: 90;bibackup.php");
 ?>
 
 <!DOCTYPE html>

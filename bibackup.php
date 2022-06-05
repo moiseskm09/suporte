@@ -1,6 +1,6 @@
 <?php
 require_once './ferramentas/sql_bibackup.php';
-//header("refresh: 90;bierp_2.php");
+header("refresh: 90;bierp_1.php");
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
