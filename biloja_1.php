@@ -83,7 +83,7 @@ header("refresh: 90;biloja_2.php");
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-md col-lg">
+                <div class="col-6 col-md col-lg">
                     <div class="card cards-supeiror">
                         <div class="card-body">
                             <h4 class="d-flex d-lg-flex align-items-center align-items-lg-center card-title titulos"><i class="fas fa-building icones"></i>&nbsp;<?php echo $totalFabrica["totalFabrica"]; ?></h4>
@@ -95,7 +95,7 @@ header("refresh: 90;biloja_2.php");
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="col col-md-12">
+                <div class="col-12 col-md-12">
                     <div class="card cards-supeiror">
                         <div class="card-body">
                             <h1 class="d-xl-flex justify-content-xl-center titulos">Suporte - Anual</h1>
@@ -107,10 +107,10 @@ header("refresh: 90;biloja_2.php");
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-6">
-                    <div class="row" style="height: 100%">
+                <div class="col-12 col-md-6">
+                    <div class="row" style="height: 99%">
                         <div class="col col-md-12">
-                            <div class="card cards-supeiror" style="height: 100%">
+                            <div class="card cards-supeiror" style="height: 99%">
                                 <div class="card-body">
                                     <h1 class="d-xl-flex justify-content-xl-center titulos">Suporte - Por Período</h1>
                                     <div id="anychart-embed-samples-bct-column-chart-042" class="anychart-embed anychart-embed-samples-bct-column-chart-04">
@@ -122,8 +122,8 @@ header("refresh: 90;biloja_2.php");
                         </div>
                     </div>
                 </div>
-                <div class="col col-md-6">
-                    <div class="row" style="height: 100%">
+                <div class="col-12 col-md-6">
+                    <div class="row" style="height: 99%">
                         <div class="col col-md-12">
                             <div class="card cards-supeiror" style="height: 100%">
                                 <div class="card-body">

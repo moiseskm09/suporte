@@ -116,6 +116,11 @@
     color: #f1be48;
     font-size: 130px;
 }
+@media (max-width: 768px) {
+    .backup-valores{
+    font-size: 100px;
+}
+}
 
 .relacao li {
     list-style-type: none;
